@@ -7,7 +7,6 @@ public class RegexExample {
 
     //Task 1
     public boolean hasOrderUuid(){
-        boolean found=false;
         pattern= Pattern.compile("orderUUID");
         matcher= pattern.matcher(string1);
         if (matcher.find()){
@@ -16,9 +15,22 @@ public class RegexExample {
         return false;
     }
 
+    public String getOrderUuid(){
+        boolean found=false;
+        pattern= Pattern.compile("orderUUID=([^\\s]*)");
+        matcher= pattern.matcher(string1);
+        if (matcher.find()){
+            System.out.println("I found the text "+matcher.group()+" starting at index "+
+                    matcher.start()+" and ending at index "+matcher.end());
+            return "true";
+        }
+        return "false";
+    }
+
 
     public static void main(String[] args){
         RegexExample rg = new RegexExample();
             System.out.println("Has orderUUID ? "+ rg.hasOrderUuid());
+            System.out.println(rg.getOrderUuid());
     }
 }
