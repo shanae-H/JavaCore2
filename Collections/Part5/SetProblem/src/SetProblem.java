@@ -1,4 +1,5 @@
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 public class SetProblem {
@@ -27,6 +28,17 @@ public class SetProblem {
             this.age = age;
         }
 
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (!(o instanceof User user)) return false;
+            return age == user.age && Objects.equals(name, user.name);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(name, age);
+        }
     }
 
     public static void main(String[] args) {
