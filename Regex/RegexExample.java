@@ -26,12 +26,25 @@ public class RegexExample {
         }
     }
 
+    //Task 3
+    public void getUserEmail(){
+        pattern= Pattern.compile("(\\w+)@(\\w+).(\\w+)");
+        matcher= pattern.matcher(string2);
+        if (matcher.find()){
+            System.out.println("Found "+ matcher.group());
+        }else{
+            System.out.println("Cannot find user email");
+        }
+    }
+
+
 
 
 
     public static void main(String[] args){
         RegexExample rg = new RegexExample();
             System.out.println("Has orderUUID ? "+ rg.hasOrderUuid());
-            System.out.println(rg.getOrderUuid());
+            rg.getOrderUuid();
+            rg.getUserEmail();
     }
 }
