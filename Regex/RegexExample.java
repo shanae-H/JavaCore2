@@ -41,7 +41,6 @@ public class RegexExample {
 
     //Task4
     public void getNumberOfOrders(){
-       // pattern= Pattern.compile("orders \\[(\\d+)]");
         pattern= Pattern.compile("orders.*\\[(\\d+)]");
         matcher= pattern.matcher(string3);
         if (matcher.find()){
