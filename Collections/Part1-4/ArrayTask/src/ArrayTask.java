@@ -94,6 +94,7 @@ public class ArrayTask implements Serializable {
         System.out.println("All duplicated words have been removed \n" + lyricList);
 
         lyricList.sort(Comparator.comparingInt(String::length));
+        System.out.println("Sorted list of lyrics :\n"+lyricList);
     }
 
     //Part 3 - #1,2,3
