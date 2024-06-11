@@ -165,18 +165,17 @@ public class ArrayTask implements Serializable {
 
     public static void main(String [] args){
         ArrayTask at= new ArrayTask();
-        //at.wordCount();
-        //at.countWordInArray();
+        at.countWordInArray();
+        at.countWordInArray();
         at.removeDuplicatesAndSort();
-       /* at.removeSpecificWords();
+        at.removeSpecificWords();
         at.serializeLyricsToFile();
         at.readLyricsFromFile();
         try{
-            at.useCustomException();
-            at.findRandomString("he told us of his life");
+            at.findRandomString("show must go on!");
         }catch(BeatlesException beatle){
             beatle.printStackTrace();
-        }*/
+        }
     }
 }
 
