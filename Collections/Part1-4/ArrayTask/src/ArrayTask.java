@@ -8,46 +8,41 @@ public class ArrayTask implements Serializable {
             "Lived a man who sailed to sea\n" +
             "And he told us of his life\n" +
             "In the land of submarines\n" +
-            "\n" +
-            "So we sailed up to the sun\n" +
-            "'Til we found the sea of green\n" +
+            "So we sailed on to the sun\n" +
+            "'Til we found a sea of green\n" +
             "And we lived beneath the waves\n" +
             "In our yellow submarine\n" +
-            "\n" +
             "We all live in a yellow submarine\n" +
             "Yellow submarine, yellow submarine\n" +
             "We all live in a yellow submarine\n" +
             "Yellow submarine, yellow submarine\n" +
-            "\n" +
             "And our friends are all aboard\n" +
             "Many more of them live next door\n" +
             "And the band begins to play\n" +
-            "\n" +
             "We all live in a yellow submarine\n" +
             "Yellow submarine, yellow submarine\n" +
             "We all live in a yellow submarine\n" +
             "Yellow submarine, yellow submarine\n" +
-            "\n" +
-            "Full speed ahead, Mr. Boatswain, full speed ahead !\n" +
-            "Full speed it is, Sergeant !\n" +
-            "Cut the cable, drop the cable !\n" +
-            "Aye-aye, sir, aye-aye !\n" +
-            "Captain, Captain !\n" +
-            "\n" +
-            "As we live a life of ease ( a life of ease )\n" +
-            "Everyone of us ( everyone of us ) has all we need ( has all we need )\n" +
-            "Sky of blue ( sky of blue ) and sea of green ( sea of green )\n" +
-            "In our yellow ( in our yellow ) submarine ( submarine, ah-ha )\n" +
-            "\n" +
+            "Full steam ahead, Mister Boatswain, full steam ahead\n" +
+            "Full steam ahead it is, Sergeant\n" +
+            "(Cut the cable, drop the cable)\n" +
+            "Aye-aye, sir, aye-aye\n" +
+            "Captain, captain\n" +
+            "As we live a life of ease (a life of ease)\n" +
+            "Every one of us (every one of us)\n" +
+            "Has all we need (has all we need)\n" +
+            "Sky of blue (sky of blue)\n" +
+            "And sea of green (sea of green)\n" +
+            "In our yellow (in our yellow)\n" +
+            "Submarine (submarine, aha)\n" +
+            "We all live in a yellow submarine\n" +
+            "A yellow submarine, yellow submarine\n" +
+            "We all live in a yellow submarine\n" +
+            "A yellow submarine, yellow submarine\n" +
             "We all live in a yellow submarine\n" +
             "Yellow submarine, yellow submarine\n" +
             "We all live in a yellow submarine\n" +
-            "Yellow submarine, yellow submarine\n" +
-            "\n" +
-            "We all live in a yellow submarine\n" +
-            "Yellow submarine, yellow submarine\n" +
-            "We all live in a yellow submarine\n" +
-            "Yellow submarine, yellow submarine\n";
+            "Yellow submarine, yellow submarine";
 
     public ArrayTask(){
         removeAndConvertLyricsToArray();
@@ -55,21 +50,27 @@ public class ArrayTask implements Serializable {
 
     //Part 1- #1,2,3,4
     public void removeAndConvertLyricsToArray(){
-        lyrics = lyrics.replace(",", " ");
+        lyrics = lyrics.replace(",", "");
         lyrics = lyrics.replace("\n", " ");
+        lyrics = lyrics.replace("(","( ");
+        lyrics = lyrics.replace(")"," )");
         lyrics = lyrics.toLowerCase();
         lyricArray= lyrics.split(" ");
     }
 
     //Part 1 #5
-    public void countWordInArray (){
-        int count=0;
-        for (String s: lyricArray){
-            if(s.equalsIgnoreCase("submarine")){
-            count++;
+    public void wordCount(){
+        Arrays.sort(lyricArray);
+        Map<String,Integer> wordCount= new HashMap<>();
+        for(String s: lyricArray) {
+            if(s.isEmpty()){
+                continue;
             }
+            wordCount.put(s, wordCount.getOrDefault(s,0)+1);
         }
-        System.out.println("Using a String Array, the word submarine was counted "+ count+" through out the lyrics");
+        for(Map.Entry<String,Integer> entry: wordCount.entrySet()){
+            System.out.println(entry.getKey()+" - "+ entry.getValue());
+        }
     }
 
     //Part 2- #1, 2
@@ -152,8 +153,9 @@ public class ArrayTask implements Serializable {
 
     public static void main(String [] args){
         ArrayTask at= new ArrayTask();
-        at.countWordInArray();
-        at.removeDuplicatesAndSort();
+        at.wordCount();
+        //at.countWordInArray();
+       /* at.removeDuplicatesAndSort();
         at.removeSpecificWords();
         at.serializeLyricsToFile();
         at.readLyricsFromFile();
@@ -162,7 +164,7 @@ public class ArrayTask implements Serializable {
             at.findRandomString("he told us of his life");
         }catch(BeatlesException beatle){
             beatle.printStackTrace();
-        }
+        }*/
     }
 }
 
