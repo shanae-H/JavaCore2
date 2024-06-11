@@ -59,7 +59,7 @@ public class ArrayTask implements Serializable {
     }
 
     //Part 1 #5
-    public void wordCount(){
+    public void countWordInArray(){
         Arrays.sort(lyricArray);
         Map<String,Integer> wordCount= new HashMap<>();
         for(String s: lyricArray) {
@@ -76,10 +76,21 @@ public class ArrayTask implements Serializable {
     //Part 2- #1, 2
     public void removeDuplicatesAndSort() {
         lyricList = Arrays.asList(lyricArray);
-        int count = Collections.frequency(lyricList, "submarine");
-        System.out.println("Using a List of type String, the word submarine was counted " + count + " through out the lyrics");
+        System.out.println("Using a List of type String");
+        Map <String,Integer> wordCount= new HashMap<>();
 
-        lyricList = new LinkedList<String>(lyricList.stream().distinct().toList());
+        for (String s: lyricList) {
+            if (s.isEmpty()){
+                continue;
+            }
+            int count = Collections.frequency(lyricList, s);
+            wordCount.put(s,count);
+        }
+
+        for (Map.Entry<String,Integer> entry: wordCount.entrySet()){
+            System.out.println(entry.getKey()+" - " + entry.getValue());
+        }
+       lyricList = new LinkedList<String>(lyricList.stream().distinct().toList());
         System.out.println("All duplicated words have been removed \n" + lyricList);
 
         lyricList.sort(Comparator.comparingInt(String::length));
@@ -153,10 +164,10 @@ public class ArrayTask implements Serializable {
 
     public static void main(String [] args){
         ArrayTask at= new ArrayTask();
-        at.wordCount();
+        //at.wordCount();
         //at.countWordInArray();
-       /* at.removeDuplicatesAndSort();
-        at.removeSpecificWords();
+        at.removeDuplicatesAndSort();
+       /* at.removeSpecificWords();
         at.serializeLyricsToFile();
         at.readLyricsFromFile();
         try{
